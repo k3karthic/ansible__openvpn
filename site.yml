@@ -1,0 +1,67 @@
+---
+- name: openvpn with nat
+  hosts: all
+  become: yes
+
+  tasks:
+    - name: allow ip forward
+      ansible.builtin.sysctl:
+        name: net.ipv4.ip_forward
+        value: '1'
+        state: present
+        sysctl_set: yes
+
+    - name: remove default rule
+      ansible.builtin.iptables:
+        action: append
+        chain: FORWARD
+        reject_with: icmp-host-prohibited
+        state: absent
+
+    - name: accept connections from tun+
+      ansible.builtin.iptables:
+        action: append
+        chain: FORWARD
+        jump: ACCEPT
+        in_interface: "tun+"
+        comment: accept connections from tun+
+
+    - name: allow tun+ to ens3
+      ansible.builtin.iptables:
+        action: append
+        chain: FORWARD
+        jump: ACCEPT
+        in_interface: "tun+"
+        out_interface: "ens3"
+        ctstate: ESTABLISHED,RELATED
+        comment: accept tun+ to ens3
+
+    - name: allow ens3 to tun+
+      ansible.builtin.iptables:
+        action: append
+        chain: FORWARD
+        jump: ACCEPT
+        in_interface: "ens3"
+        out_interface: "tun+"
+        ctstate: ESTABLISHED,RELATED
+        comment: accept ens3 to tun+
+
+    - name: masquerade openvpn
+      ansible.builtin.iptables:
+        table: nat
+        action: append
+        chain: POSTROUTING
+        jump: MASQUERADE
+        source: "{{ openvpn_network }}"
+        out_interface: "ens3"
+        comment: masquerade openvpn
+
+    - name: restore default rule
+      ansible.builtin.iptables:
+        action: append
+        chain: FORWARD
+        reject_with: icmp-host-prohibited
+
+    - name: save iptables
+      ansible.builtin.shell:
+        cmd: iptables-save > /etc/iptables/rules.v4

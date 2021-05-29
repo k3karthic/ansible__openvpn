@@ -1,0 +1,11 @@
+plugin: oracle.oci.oci
+
+regions:
+    - ap-hyderabad-1
+
+enable_parallel_processing: yes
+
+filters:
+    - freeform_tags: {
+        "openvpn_service": "yes"
+      }
