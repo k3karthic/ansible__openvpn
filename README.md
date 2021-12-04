@@ -4,8 +4,8 @@ The Ansible playbook configures an Ubuntu 20.04 instance running OpenVPN to act 
 
 **Assumption:** The instance runs in Oracle Cloud using the scripts below,
 * terraform__oci-instance-1
-	* GitHub: [github.com/k3karthic/terraform__oci-instance-1](https://github.com/k3karthic/terraform__oci-instance-1).
-	* Codeberg: [codeberg.org/k3karthic/terraform__oci-instance-1](https://codeberg.org/k3karthic/terraform__oci-instance-1).
+	* GitHub: [github.com/k3karthic/terraform__oci-instance-1](https://github.com/k3karthic/terraform__oci-instance-1)
+	* Codeberg: [codeberg.org/k3karthic/terraform__oci-instance-1](https://codeberg.org/k3karthic/terraform__oci-instance-1)
 
 ## Requirements
 
