@@ -12,6 +12,11 @@ The following Ansible playbook covers basic setup for Ubuntu (e.g, swap, fail2ba
     * GitHub: [github.com/k3karthic/ansible__ubuntu-basic](https://github.com/k3karthic/ansible__ubuntu-basic)
     * Codeberg: [codeberg.org/k3karthic/ansible__ubuntu-basic](https://codeberg.org/k3karthic/ansible__ubuntu-basic)
 
+You can get a free hostname for the OpenVPN server using the Ansible playbook below,
+* ansible__oci-ydns
+    * GitHub: [github.com/k3karthic/ansible__oci-ydns](https://github.com/k3karthic/ansible__oci-ydns)
+    * Codeberg: [codeberg.org/k3karthic/ansible__oci-ydns](https://codeberg.org/k3karthic/ansible__oci-ydns)
+
 ## Requirements
 
 Install the following before running the playbook,
