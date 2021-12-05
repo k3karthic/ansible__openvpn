@@ -29,7 +29,7 @@ ansible-galaxy collection install oracle.oci
 
 The Oracle [Ansible Inventory Plugin](https://docs.oracle.com/en-us/iaas/Content/API/SDKDocs/ansibleinventoryintro.htm) populates public Ubuntu instances.
 
-The target Ubuntu instances must have the freeform tag `openvpn_service: yes`.
+The target Ubuntu instance must have the freeform tag `openvpn_service: yes`.
 
 ## Playbook Configuration
 
