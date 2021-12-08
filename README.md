@@ -17,6 +17,11 @@ You can get a free hostname for the OpenVPN server using the Ansible playbook be
     * GitHub: [github.com/k3karthic/ansible__oci-ydns](https://github.com/k3karthic/ansible__oci-ydns)
     * Codeberg: [codeberg.org/k3karthic/ansible__oci-ydns](https://codeberg.org/k3karthic/ansible__oci-ydns)
 
+## Code Mirrors
+
+* GitHub: [github.com/k3karthic/ansible__openvpn](https://github.com/k3karthic/ansible__openvpn)
+* Codeberg: [codeberg.org/k3karthic/ansible__openvpn](https://codeberg.org/k3karthic/ansible__openvpn)
+
 ## Requirements
 
 Install the following before running the playbook,
