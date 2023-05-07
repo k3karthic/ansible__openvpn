@@ -1,24 +1,24 @@
 ---
-- name: openvpn with nat
+- name: Openvpn with nat
   hosts: all
   become: yes
 
   tasks:
-    - name: allow ip forward
+    - name: Allow ip forward
       ansible.builtin.sysctl:
         name: net.ipv4.ip_forward
         value: '1'
         state: present
         sysctl_set: yes
 
-    - name: remove default rule
+    - name: Remove default rule
       ansible.builtin.iptables:
         action: append
         chain: FORWARD
         reject_with: icmp-host-prohibited
         state: absent
 
-    - name: accept connections from tun+
+    - name: Accept connections from tun+
       ansible.builtin.iptables:
         action: append
         chain: FORWARD
@@ -26,7 +26,7 @@
         in_interface: "tun+"
         comment: accept connections from tun+
 
-    - name: allow tun+ to ens3
+    - name: Allow tun+ to ens3
       ansible.builtin.iptables:
         action: append
         chain: FORWARD
@@ -36,7 +36,7 @@
         ctstate: ESTABLISHED,RELATED
         comment: accept tun+ to ens3
 
-    - name: allow ens3 to tun+
+    - name: Allow ens3 to tun+
       ansible.builtin.iptables:
         action: append
         chain: FORWARD
@@ -46,7 +46,7 @@
         ctstate: ESTABLISHED,RELATED
         comment: accept ens3 to tun+
 
-    - name: masquerade openvpn
+    - name: Masquerade openvpn
       ansible.builtin.iptables:
         table: nat
         action: append
@@ -56,12 +56,12 @@
         out_interface: "ens3"
         comment: masquerade openvpn
 
-    - name: restore default rule
+    - name: Restore default rule
       ansible.builtin.iptables:
         action: append
         chain: FORWARD
         reject_with: icmp-host-prohibited
 
-    - name: save iptables
+    - name: Save iptables
       ansible.builtin.shell:
         cmd: iptables-save | grep -v f2b- > /etc/iptables/rules.v4
