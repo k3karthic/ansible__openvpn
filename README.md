@@ -1,6 +1,6 @@
 # Ansible — OpenVPN Gateway
 
-The Ansible playbook configures an Ubuntu 20.04 instance running OpenVPN to act as a NAT proxy.
+The Ansible playbook configures an Ubuntu 22.04 instance running OpenVPN to act as a NAT proxy.
 
 You can run the OpenVPN server for free by using the [Oracle Cloud Always Free](https://www.oracle.com/cloud/free/#always-free) tier. Terraform script for deploying the server is below,
 * terraform__oci-instance-1
